@@ -1,0 +1,49 @@
+<% layout("/layouts/boilerplate")%>
+<div class="row">
+    <div class="col-8">
+        <br> <br>
+    <h3>Create New listings</h3>
+    <form method="post" action="/listings">
+        <label for="title" class="form-lable"></label>
+        <div class="mb-3">
+            <label for="text" class="form-lable">Text</label>
+            <input type="text"  name="listing[title]"  placeholder="Enter Your Title" class="form-control">
+
+        </div>
+        <label for="description" class="form-lable">Description</label>
+        <textarea name="listing[description]" class="form-control">
+         </textarea>
+      
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-lable" >Image</label>
+            <input name="listing[Image]" class="form-control"/>
+
+        </div>
+        <div class="row">
+            <div class="mb-3 col-md-4" >
+                <label for="price" class="form-lable" >Price</label>
+                <input type="number" name="listing[price]" placeholder="Enter your Price" class="form-control">
+            </div>
+            <div class="mb-3 col-md-8">
+                <label for="country" class="form-lable" >Country</label>
+                <input type="text" name="listing[Country]" placeholder="Enter your Country" class="form-control">
+    
+            </div>
+        </div>
+         
+        <div class="mb-3">
+            <label for="location" class="form-lable">Location</label>
+            <input type="text" name="listing[location]" placeholder="Enter Your location" class="form-control" >
+        </div>
+        <br> <br>
+        <!-- <div "d-grid gap-2 d-md-block">
+            <button type="button" class="btn btn-dark add-btn" >Add</button>
+        </div>
+        <br><br><br> -->
+        <button>add</button>
+        
+       </form>
+    </div>
+     </div>
+
