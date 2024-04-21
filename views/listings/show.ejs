@@ -7,26 +7,30 @@
     <div class="card col-6 offset-2 listing-card">
         <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_img">
   <div class="card-body">
-    <p class="card-text">
+    <p class="card-text">  <i> Owner by :- <%= listing.owner.username  %></i> </p>
+    <p class="card-text"><%= listing.description%> </p>
      
-      <%= listing.description%> <br>
-      &#8377;<%= listing.price%> <br>
-      <%= listing.location%> <br>
-      <%= listing.country%> <br>
+     <p  class="card-text"> &#8377;<%= listing.price%> </p>
+     <p class="card-text"> <%= listing.location%> </p>
+     <p class="card-text"><%= listing.country%></p>  
 
   </div>
     </div>
-    
+   
+    <% if(currUser &&  listing.owner._id.equals(currUser._id)) { %>
     <div class="btns">
+
     <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-2 btn-edit">Edit</a>
     <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
         <button class=" btn btn-dark offset-4">Delete </button>
       </form>
     </div>
     <br>
+   <% } %>
     
     <div  class="col-8 offset-2 mt-3 mb-3">
-      <hr>
+    
+      <% if(currUser){ %>
       <h4>Leave a Review</h4>
       <form action="/listings/<%=listing._id %>/reviews " method="post"  novalidate class="needs-validation">
       <label for="rating" class="form-lable">Rating</label>
@@ -39,6 +43,7 @@
     <button class="btn btn-outline-dark btn">Submit</button>
   </div>
 </form>
+<% } %>
 <hr>
 <p><b>All Review</b></p>
 <ul>
@@ -48,7 +53,7 @@
 <% for (review of listing.review  ) { %>
   <div class="card col-5 ms-3 mb-3"> 
     <div class="card-body">
-      <h5 class="card-title">Ankit Rathore</h5>
+      <h5 class="card-title"><%= review.author.username %></h5>
       <p class="card-text"><%= review.comment %></p>
       <p class="card-text"><%= review.rating %>Stars</p>
      <form method="post" action="/listings/<%=listing._id%>/reviews/<%=review._id  %>?_method=DELETE"  >
