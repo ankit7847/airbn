@@ -7,28 +7,22 @@ const listingController = require("../controller/listing.js");
 
 
 
-  //New Route
-  router.get("/new",  isLoggedIn,listingController.renderNewForm);
-
-  //Index Route
-  router.get("/", wrapAsync(listingController.index));
-
-
-
-//Show Route
-router.get("/:id",wrapAsync(listingController.showlisting) );
-
-//Edit Route
-router.get("/:id/edit",isLoggedIn, isOwner, wrapAsync(listingController.renderEditForm));
-  
-  //Update Route
-  router.put("/:id",isLoggedIn,isOwner, validateListing, wrapAsync(listingController.renderUpdateForm));
-  
-  //Delete Route
-  router.delete("/:id",isLoggedIn,isOwner, wrapAsync(listingController.renderDeleteForm));
- 
-//create route
-  router.post("/", validateListing,isLoggedIn,
+router.route("/").get( wrapAsync(listingController.index))
+.post( validateListing,isLoggedIn,
 wrapAsync(listingController.createListing)
 );
+//New Route
+router.get("/new",  isLoggedIn,listingController.renderNewForm);
+  
+
+
+
+router.route("/:id").get(wrapAsync(listingController.showlisting) )
+.put(isLoggedIn,isOwner, validateListing, wrapAsync(listingController.renderUpdateForm))
+  .delete(isLoggedIn,isOwner, wrapAsync(listingController.renderDeleteForm));
+  
+//Edit Route
+router.get("/:id/edit",isLoggedIn, isOwner, wrapAsync(listingController.renderEditForm));
+   
+
 module.exports = router;
