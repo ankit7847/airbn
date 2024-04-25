@@ -9,13 +9,12 @@ const listingSchema = new Schema({
         require : true,
     },
     description : String,
-    image:{ filename:String,
-        url:{type:String,
-        default:"https://media.istockphoto.com/id/534716373/photo/sunset-on-tropical-beach.jpg?s=2048x2048&w=is&k=20&c=08A6qXe1sw5inFvzbik-eDu05ANE81Jdhf8SynoohAA=",
-        Set:(v)=> v==="  " ? "https://www.istockphoto.com/photo/a-large-gray-craftsman-new-construction-house-with-a-landscaped-yard-and-leading-gm1448386210-485915364?utm_campaign=category_photos_bottom&utm_content=https%3A%2F%2Funsplash.com%2Fimages&utm_medium=affiliate&utm_source=unsplash&utm_term=images%3A%3A%3A" : v
-       
     
-    }},
+    image: {
+        url: String,
+        filename: String,
+    },
+
     price : Number,
     location : String,
     country : String,
