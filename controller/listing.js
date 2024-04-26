@@ -44,17 +44,29 @@ module.exports.index = async (req, res) => {
       res.redirect("/listings");
     }
     req.flash("success", " listing updated !");
-    res.render("listings/edit.ejs", { listing });
+    let origialImageUrl = listing.image.url;
+    origialImageUrl= origialImageUrl.replace("/uplode","uplode/h_300,w_250")
+
+    res.render("listings/edit.ejs", { listing,origialImageUrl });
   };
 
   module.exports.renderUpdateForm = async (req, res) => {
     let { id } = req.params;
-    let listing = await Listing.findById(id);
+    const Listing = await Listing.findById(id);
     if( listing.owner.equals(res.locals.currUser._id)){
       req.flash("error", "You don't have permission to edit ")
      return res.redirect(`/listings/${id}`);
     }
-    await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+   let listing =  await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+if( typeof req.file !=="undefined") {
+
+
+
+   let url = req.file.path;
+    let filename = req.file.filename;
+    listing.image = {url,filename};
+    await newListing.save();
+  }
     req.flash("success","Listing Updated!");
     res.redirect(`/listings/${id}`);
   };

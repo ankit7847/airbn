@@ -63,11 +63,11 @@
 </form>
 <% } %>
 <hr>
-<p><b>All Review</b></p>
-<ul>
+
+<% if(listing.review.length>0) { %> 
 
 <div class="row">
-  
+  <p><b>All Review</b></p>
 <% for (review of listing.review  ) { %>
   <div class="card col-5 ms-3 mb-3"> 
     <div class="card-body">
@@ -84,6 +84,6 @@
   </div>
   <% } %>
 </div>
-
+<% } %>
 </ul>
 </body>
