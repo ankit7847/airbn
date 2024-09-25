@@ -17,7 +17,7 @@
   </div>
     </div>
    
-    <% if(currUser &&  listing.owner._id.equals(currUser._id)) { %>
+    <% if(currUser &&  listing.owner._id.equals(listing.owner.__id)) { %>
     <div class="btns">
 
     <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-2 btn-edit">Edit</a>
